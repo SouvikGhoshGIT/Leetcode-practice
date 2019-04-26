@@ -110,17 +110,41 @@ void insert(ListNode* l1,int a){
     }
 }
 
+ListNode* addTwoNumbersv2(ListNode* l1, ListNode* l2) {
+    int carry=0;
+    ListNode *result=NULL;
+    while(l1!=NULL || l2!=NULL){
+        auto dv=div((l1->val+l2->val+carry),10);
+        carry=dv.rem;
+        if(result==NULL){
+            result=new ListNode(dv.quot);
+
+        }
+        else{
+            while(result->next!=NULL){
+                result=result->next;
+            }
+            result->next=new ListNode(dv.quot);
+        }
+        l1=l1->next;
+        l2=l2->next;
+    }
+    result=reverse(result);
+    return result;
+}
+
 int main(){
     ListNode *n1=new ListNode(0);
-    // insert(n1,1);
-    // insert(n1,1);
+     insert(n1,1);
+     insert(n1,1);
 
 
     ListNode *n2=new ListNode(0);
-    // insert(n2,1);
-    // insert(n2,1);
+     insert(n2,1);
+     insert(n2,1);
 
     addTwoNumbers(n1,n2);
+    addTwoNumbersv2(n1,n2);
 }
 
 
